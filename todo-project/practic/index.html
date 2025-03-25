@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function loadTodoItems () {
+            const response = await fetch('http://localhost:3000/api/todos');
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function createTodoItem () {
+            const response = await fetch('http://localhost:3000/api/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: 'Уволить Тиунова',
+                    owner: 'Директор чего то там'
+                })
+            })
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function getTodoItem () {
+            const response = await fetch('http://localhost:3000/api/todos/1721904121864');
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function markTodoDone () {
+            const response = await fetch('http://localhost:3000/api/todos/1721904121864', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    done: true
+                })
+            })
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function deleteTodoItem () {
+            const response = await fetch('http://localhost:3000/api/todos/1721904121864', {
+                method: 'DELETE'
+            })
+            const data = await response.json();
+            console.log(data);
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
